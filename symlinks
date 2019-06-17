@@ -1,0 +1,10 @@
+{
+    "zshrc": "~/.zshrc",
+    "vimrc": "~/.vimrc",
+    "tmux.conf": "~/.tmux.conf",
+    "npmrc": "~/.npmrc",
+    "settings.json": "~/.config/Code/User/settings.json",
+    "keybindings.json": "~/.config/Code/User/keybindings.json",
+    "emacs": "~/.emacs",
+    "test_link": "~/.config/baddir/test_link"
+}

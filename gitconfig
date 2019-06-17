@@ -1,0 +1,10 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = Sam Dixon
+#	email = samljdixon2@gmail.com 
+[user]
+	name = Sam Dixon\n
+	email = samljdixon@gmail.com
+[credential]
+	helper = cache
