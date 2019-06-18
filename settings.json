@@ -129,9 +129,15 @@
         "<C-d>": false,
         "<C-w>": false
     },
+    "vim.insertModeKeyBindings": [
+     {
+         "before": ["j", "j"],
+         "after": ["<esc>"]
+     }
+    ],
     "terminal.integrated.rendererType": "dom",
     "editor.lineHeight": 17,
-    "terminal.integrated.fontFamily": "'hack nerd font mono'",
+    "terminal.integrated.fontFamily": "'monospace'",
 
     // Testing
     "editor.glyphMargin": false,
