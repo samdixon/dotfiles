@@ -126,7 +126,6 @@
         }
     ],
     "vim.handleKeys": {
-        "<C-d>": false,
         "<C-w>": false
     },
     "vim.insertModeKeyBindings": [
@@ -146,6 +145,5 @@
     "editor.lineDecorationsWidth": 5, // undocumented
     "editor.lineNumbersMinChars": 0,
     "editor.fontSize": 14,
-    "workbench.sideBar.location": "right",
-    "workbench.colorTheme": "Solarized Light", // undocumented
+    "workbench.sideBar.location": "right", // undocumented
 }
