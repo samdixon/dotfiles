@@ -29,6 +29,8 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'blueyed/vim-diminactive'
 Plugin 'fatih/vim-go'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'benmills/vimux'
+Plugin 'raimondi/delimitmate'
 
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
@@ -58,6 +60,7 @@ nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 inoremap jj <Esc>
 
 au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
+au BufNewFile,BufRead *.go set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 
 set encoding=utf-8
 syntax on
@@ -67,6 +70,7 @@ set background=dark
 " Nerd Tree
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 nmap <silent> <leader>i :NERDTreeTabsToggle<CR>
+
 " To have NERDTree always open on startup
 let g:nerdtree_tabs_open_on_console_startup = 0
 "
@@ -74,6 +78,7 @@ let g:nerdtree_tabs_open_on_console_startup = 0
 set clipboard=unnamed
 nmap \b :NERDTreeToggle<CR>
 
+" Splits
 nmap <Leader>= :vs<CR>
 nmap <Leader>- :sv<CR>
 
@@ -150,3 +155,6 @@ command! W w
 command! Wq wq
 command! WQ wq
 
+" Vimux Commands
+map <leader>vp :VimuxPromptCommand<CR>
+map <leader>vv :VimuxRunLastCommand<CR>
