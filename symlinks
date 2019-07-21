@@ -6,5 +6,6 @@
     "settings.json": "~/.config/Code/User/settings.json",
     "keybindings.json": "~/.config/Code/User/keybindings.json",
     "emacs": "~/.emacs",
-    "test_link": "~/.config/baddir/test_link"
+    "inputrc": "~/.inputrc",
+    "bashrc": "~/.bashrc"
 }
