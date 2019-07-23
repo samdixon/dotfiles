@@ -155,6 +155,12 @@ command! W w
 command! Wq wq
 command! WQ wq
 
+" Go specific commands
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
 " Vimux Commands
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>vv :VimuxRunLastCommand<CR>
