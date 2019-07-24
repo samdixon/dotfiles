@@ -18,17 +18,11 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'junegunn/fzf.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
-Plugin 'mileszs/ack.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'junegunn/goyo.vim'
-Plugin 'blueyed/vim-diminactive'
 Plugin 'fatih/vim-go'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'benmills/vimux'
 Plugin 'raimondi/delimitmate'
 
@@ -51,9 +45,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
 " Remap visual line down
 nnoremap j gj
 nnoremap k gk
+
 " Map no highlight
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 " Remap Escape
@@ -64,19 +60,7 @@ au BufNewFile,BufRead *.go set tabstop=4 softtabstop=4 shiftwidth=4 expandtab au
 
 set encoding=utf-8
 syntax on
-set background=dark
-" colorscheme solarized
-
-" Nerd Tree
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-nmap <silent> <leader>i :NERDTreeTabsToggle<CR>
-
-" To have NERDTree always open on startup
-let g:nerdtree_tabs_open_on_console_startup = 0
-"
-
-set clipboard=unnamed
-nmap \b :NERDTreeToggle<CR>
+set background=dark 
 
 " Splits
 nmap <Leader>= :vs<CR>
@@ -136,6 +120,8 @@ augroup mydelimitMate
   au FileType tex let b:delimitMate_quotes = ""
   au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
   au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+  au FileType scm let b:delimitMate_matchpairs = "(:)"
+  au FileType scm let b:delimitMate_autoClose=1
 augroup END
 
 augroup _fzf
@@ -155,6 +141,8 @@ command! W w
 command! Wq wq
 command! WQ wq
 
+map <F2> :w! <CR>
+map ff :w! <CR>
 " Go specific commands
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
