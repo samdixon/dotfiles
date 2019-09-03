@@ -15,7 +15,7 @@
 
 
     // Window
-    "window.zoomLevel": 1,
+    "window.zoomLevel": -1,
     "window.menuBarVisibility": "toggle",
 
     // Files
@@ -136,7 +136,6 @@
     ],
     "terminal.integrated.rendererType": "dom",
     "editor.lineHeight": 17,
-    "terminal.integrated.fontFamily": "'monospace'",
 
     // Testing
     "editor.glyphMargin": false,
