@@ -57,10 +57,11 @@ inoremap jj <Esc>
 
 au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 au BufNewFile,BufRead *.go set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
+au BufNewFile,BufRead *.c set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
+
 
 set encoding=utf-8
 syntax on
-set background=dark 
 
 " Splits
 nmap <Leader>= :vs<CR>
