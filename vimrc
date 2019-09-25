@@ -1,12 +1,5 @@
-let mapleader = ","
 set nocompatible              " required
-set noswapfile
-set backspace=indent,eol,start
-set lazyredraw
-set incsearch
-set hlsearch
-filetype off" required
-set nu
+filetype off "required
 
 " Vundle Start
 " set the runtime path to include Vundle and initialize
@@ -25,6 +18,8 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'fatih/vim-go'
 Plugin 'benmills/vimux'
 Plugin 'raimondi/delimitmate'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
@@ -34,6 +29,14 @@ Plugin 'raimondi/delimitmate'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Vundle End
+
+let mapleader=","
+set noswapfile
+set backspace=indent,eol,start
+set lazyredraw
+set incsearch
+set hlsearch
+set nu
 
 set t_Co=256
 " Set Split Locations
@@ -144,11 +147,14 @@ command! WQ wq
 
 map <F2> :w! <CR>
 map ff :w! <CR>
+
 " Go specific commands
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
+
+au FileType Python map <leader>r :!python %<CR>
 
 " Vimux Commands
 map <leader>vp :VimuxPromptCommand<CR>
