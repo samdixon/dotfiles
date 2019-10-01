@@ -147,6 +147,7 @@ command! WQ wq
 
 map <F2> :w! <CR>
 map ff :w! <CR>
+map qq :q <CR>
 
 " Go specific commands
 au FileType go nmap <leader>r <Plug>(go-run)
@@ -156,6 +157,7 @@ au FileType go nmap <leader>c <Plug>(go-coverage)
 
 au FileType Python map <leader>r :!python %<CR>
 
+au FileType ruby map <leader>r :!ruby %<CR>
 " Vimux Commands
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>vv :VimuxRunLastCommand<CR>
