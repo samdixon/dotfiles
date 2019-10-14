@@ -99,6 +99,7 @@ alias add="git add"
 alias commit="git commit"
 alias status="git status"
 alias gdiff="git diff"
+alias pom="git push origin master"
 
 # Custom Functions
 function macKillDNS() {
