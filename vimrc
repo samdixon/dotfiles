@@ -155,7 +155,7 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 
-au FileType Python map <leader>r :!python %<CR>
+au FileType Python map <leader>r :!python3 %<CR>
 
 au FileType ruby map <leader>r :!ruby %<CR>
 " Vimux Commands

@@ -84,6 +84,27 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
+# Note functions
+notedir="/Users/sdixon/Library/Mobile\ Documents/com~apple~CloudDocs/notes"
+alias notes="cd $notedir && vim"
+
+function _cn() {
+	/usr/bin/touch "$notedir/$1"
+	echo "created file $1"
+}
+
+# Custom Alias
+alias cnote="_cn"
+alias add="git add"
+alias commit="git commit"
+alias status="git status"
+alias gdiff="git diff"
+
+# Custom Functions
+function macKillDNS() {
+	sudo killall -HUP mDNSResponder
+	echo "Flushed DNS Successfully - Unless I threw an error message ;)"
+}
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -117,3 +138,6 @@ fi
 # Path Stuffs
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
