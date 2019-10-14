@@ -2,7 +2,7 @@
     // Editor
     "editor.wordWrap": "off",
     "editor.minimap.enabled": false,
-    "editor.fontFamily": "'FuraCode Nerd Font Mono','Ubuntu Mono','Monaco','Fira Mono','Roboto Mono For Powerline','Monaco','DejaVu Sans Mono'",
+    "editor.fontFamily": "'Cascadia Code', 'SF Mono', 'Menlo'",
     "editor.fontLigatures": true,
     "editor.matchBrackets": true,
     "editor.tabSize": 4,
@@ -144,5 +144,6 @@
     "editor.lineDecorationsWidth": 5, // undocumented
     "editor.lineNumbersMinChars": 0,
     "editor.fontSize": 14,
-    "workbench.sideBar.location": "right", // undocumented
+    "workbench.sideBar.location": "right",
+    "workbench.colorTheme": "Atom One Dark", // undocumented
 }
