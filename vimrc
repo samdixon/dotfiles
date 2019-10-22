@@ -20,6 +20,10 @@ Plugin 'benmills/vimux'
 Plugin 'raimondi/delimitmate'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'bluz71/vim-moonfly-colors'
+Plugin 'bluz71/vim-moonfly-statusline'
+Plugin 'chaoren/vim-wordmotion'
+Plugin 'shougo/deoplete.nvim'
 
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
@@ -30,6 +34,8 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " Vundle End
 
+let g:deoplete#enable_at_startup = 1
+
 let mapleader=","
 set noswapfile
 set backspace=indent,eol,start
@@ -39,6 +45,7 @@ set hlsearch
 set nu
 
 set t_Co=256
+colorscheme moonfly
 " Set Split Locations
 set splitbelow
 set splitright 
@@ -62,7 +69,7 @@ au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab au
 au BufNewFile,BufRead *.go set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 au BufNewFile,BufRead *.c set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 
-
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set encoding=utf-8
 syntax on
 
@@ -149,15 +156,22 @@ map <F2> :w! <CR>
 map ff :w! <CR>
 map qq :q <CR>
 
+nmap cw ce
 " Go specific commands
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go map <leader>r :!go run %<CR>
+au FileType go map <leader>b <Plug>(go-build)
+au FileType go map <leader>t <Plug>(go-test)
+au FileType go map <leader>c <Plug>(go-coverage)
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
-au FileType Python map <leader>r :!python3 %<CR>
+
+au FileType python map <leader>r :!python3 %<CR>
+au FileType python map <leader>t :!pytest -vv<CR>
+call deoplete#custom#option('omni_patterns', { 'python': '[^. *\t]\.\w*' })
 
 au FileType ruby map <leader>r :!ruby %<CR>
+
+au FileType javascript map <leader>r :!node %<CR>
 " Vimux Commands
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>vv :VimuxRunLastCommand<CR>
