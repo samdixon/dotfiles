@@ -19,11 +19,13 @@ Plugin 'fatih/vim-go'
 Plugin 'benmills/vimux'
 Plugin 'raimondi/delimitmate'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'bluz71/vim-moonfly-colors'
 Plugin 'bluz71/vim-moonfly-statusline'
 Plugin 'chaoren/vim-wordmotion'
 Plugin 'shougo/deoplete.nvim'
+Plugin 'morhetz/gruvbox'
+Plugin 'tpope/vim-rails'
+
 
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
@@ -45,7 +47,7 @@ set hlsearch
 set nu
 
 set t_Co=256
-colorscheme moonfly
+colorscheme gruvbox
 " Set Split Locations
 set splitbelow
 set splitright 
@@ -140,6 +142,9 @@ augroup _fzf
   autocmd VimEnter,ColorScheme * call <sid>update_fzf_colors()
 augroup END
 
+" Temp fix to tearing 
+autocmd BufEnter * highlight Normal guibg=0
+
 " These are things that I mistype and want ignored.
 nmap Q  <silent>
 nmap q: <silent>
@@ -164,14 +169,19 @@ au FileType go map <leader>t <Plug>(go-test)
 au FileType go map <leader>c <Plug>(go-coverage)
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
-
+" Python Commands
 au FileType python map <leader>r :!python3 %<CR>
 au FileType python map <leader>t :!pytest -vv<CR>
 call deoplete#custom#option('omni_patterns', { 'python': '[^. *\t]\.\w*' })
 
+" Ruby Commands
 au FileType ruby map <leader>r :!ruby %<CR>
 
+" JS Commands
 au FileType javascript map <leader>r :!node %<CR>
+
+" C Commands
+au FileType c map <leader>r :!make run<CR>
 " Vimux Commands
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>vv :VimuxRunLastCommand<CR>
