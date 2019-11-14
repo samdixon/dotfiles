@@ -7,6 +7,7 @@
 'init.vim' = '~/.config/nvim/init.vim'
 'bashrc' = '~/.bashrc'
 'bash_files' = '~/.bash_files'
+'gitconfig' = '~/.gitconfig'
 
 [optional]
 local_path = "~/code/dotfiles"
