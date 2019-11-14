@@ -1,3 +1,4 @@
+brew 'gcc'
 brew 'bash'
 brew 'go'
 brew 'mit-scheme'
@@ -11,7 +12,7 @@ brew 'neovim'
 brew 'ranger'
 brew 'youtube-dl'
 
-tap 'caskroom/cask'
+tap 'homebrew/cask-cask'
 cask 'anki'
 cask 'bitwarden'
 cask 'calibre'
