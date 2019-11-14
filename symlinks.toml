@@ -1,0 +1,13 @@
+[symlinks]
+# Format:
+# 'source' = 'destination'
+"npmrc" = "~/.npmrc"
+'vimrc' = '~/.vimrc'
+'alacritty.yml' = '~/.config/alacritty/alacritty.yml'
+'init.vim' = '~/.config/nvim/init.vim'
+'bashrc' = '~/.bashrc'
+'bash_files' = '~/.bash_files'
+
+[optional]
+local_path = "~/code/dotfiles"
+git_remote = 'https://github.com/samdixon/dotfiles'
