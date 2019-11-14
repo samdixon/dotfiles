@@ -1,19 +1,3 @@
-if [ -f ~/.bash_files/.defaults ]; then
-    . ~/.bash_files/.defaults
-fi
-
-if [ -f ~/.bash_files/.fzf.bash ]; then 
-    . ~/.bash_files/.fzf.bash 
-fi
-     
-if [ -f ~/.bash_files/.paths.bash ]; then
-    . ~/.bash_files/.paths.bash
-fi
-
-if [ -f ~/.bash_files/.functions.bash ]; then
-    . ~/.bash_files/.functions.bash
-fi
-
 # Note functions
 notedir="$HOME/Dropbox/notes"
 
@@ -94,5 +78,6 @@ function macKillDNS() {
 	echo "Flushed DNS Successfully - Unless I threw an error message ;)"
 }
 
-export PATH=/usr/local/opt/ruby/bin:$PATH
-export PATH=/usr/local/lib/ruby/gems/2.6.0/bin:$PATH
+function pubip() {
+    curl "ifconfig.co"
+}
