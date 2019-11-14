@@ -3,6 +3,7 @@
 # 'source' = 'destination'
 "npmrc" = "~/.npmrc"
 'vimrc' = '~/.vimrc'
+'inputrc' = '~/.inputrc'
 'alacritty.yml' = '~/.config/alacritty/alacritty.yml'
 'init.vim' = '~/.config/nvim/init.vim'
 'bashrc' = '~/.bashrc'
