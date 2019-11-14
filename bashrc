@@ -1,17 +1,17 @@
 if [ -f ~/.bash_files/.defaults ]; then
-    . ~/.bash_files/.defaults
+    . ~/.bash_files/defaults
 fi
 
 if [ -f ~/.bash_files/.fzf.bash ]; then 
-    . ~/.bash_files/.fzf.bash 
+    . ~/.bash_files/fzf.bash 
 fi
      
 if [ -f ~/.bash_files/.paths.bash ]; then
-    . ~/.bash_files/.paths.bash
+    . ~/.bash_files/paths.bash
 fi
 
 if [ -f ~/.bash_files/.functions.bash ]; then
-    . ~/.bash_files/.functions.bash
+    . ~/.bash_files/functions.bash
 fi
 
 # Note functions
