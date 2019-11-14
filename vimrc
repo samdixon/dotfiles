@@ -182,6 +182,14 @@ au FileType javascript map <leader>r :!node %<CR>
 
 " C Commands
 au FileType c map <leader>r :!make run<CR>
+
+" PHP
+au FileType php map <leader>r :!php %<CR>
+
+" Scheme
+au FileType scheme map <leader>r :!scheme --quiet < %<CR>
+au FileType scheme map <leader>t :!scheme < %<CR>
+
 " Vimux Commands
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>vv :VimuxRunLastCommand<CR>
