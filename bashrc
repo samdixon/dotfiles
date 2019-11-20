@@ -1,18 +1,7 @@
-if [ -f ~/.bash_files/.defaults ]; then
-    . ~/.bash_files/defaults
-fi
-
-if [ -f ~/.bash_files/.fzf.bash ]; then 
-    . ~/.bash_files/fzf.bash 
-fi
-     
-if [ -f ~/.bash_files/.paths.bash ]; then
-    . ~/.bash_files/paths.bash
-fi
-
-if [ -f ~/.bash_files/.functions.bash ]; then
-    . ~/.bash_files/functions.bash
-fi
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.bash_files/defaults ] && source ~/.bash_files/defaults
+[ -f ~/.bash_files/functions.bash ] && source ~/.bash_files/functions.bash
+[ -f ~/.bash_files/paths.bash ] && source ~/.bash_files/paths.bash
 
 # Note functions
 notedir="$HOME/Dropbox/notes"
@@ -96,3 +85,4 @@ function macKillDNS() {
 
 export PATH=/usr/local/opt/ruby/bin:$PATH
 export PATH=/usr/local/lib/ruby/gems/2.6.0/bin:$PATH
+
