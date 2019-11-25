@@ -2,16 +2,15 @@
 notedir="$HOME/Dropbox/notes"
 
 function _open_notes() {
-    cd $notedir
     if [ -z ${1+x} ]; then
-        nvim
+        ranger $notedir
     else
-        nvim "$1.md"
+        nvim "$notedir/$1.md"
     fi
 }
 
 function _list_notes() {
-    ls -la $notedir | awk '{print $9}' | tail -n +4 | awk '{split($0,a,"."); print a[1]}'
+    tree $notedir
 }
 
 function _create_note() {
