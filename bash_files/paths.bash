@@ -7,3 +7,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH=/usr/local/opt/ruby/bin:$PATH
 export PATH=/usr/local/lib/ruby/gems/2.6.0/bin:$PATH
+
+# Env vars
+export EDITOR=nvim
