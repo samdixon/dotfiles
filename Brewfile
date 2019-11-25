@@ -12,6 +12,7 @@ brew 'bitwarden-cli'
 brew 'neovim'
 brew 'ranger'
 brew 'youtube-dl'
+brew 'tree'
 
 tap 'homebrew/cask-cask'
 cask 'anki'
