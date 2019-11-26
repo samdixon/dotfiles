@@ -11,5 +11,5 @@
 'gitconfig' = '~/.gitconfig'
 
 [optional]
-local_path = "~/code/dotfiles"
+source_prefix = "~/code/dotfiles"
 git_remote = 'https://github.com/samdixon/dotfiles'
