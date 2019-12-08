@@ -8,7 +8,9 @@
 'init.vim' = '~/.config/nvim/init.vim'
 'bashrc' = '~/.bashrc'
 'bash_files' = '~/.bash_files'
+'bash_profile' = '~/.bash_profile'
 'gitconfig' = '~/.gitconfig'
+'tmux.conf' = '~/.tmux.conf'
 
 [optional]
 source_prefix = "~/code/dotfiles"
