@@ -11,6 +11,7 @@
 'bash_profile' = '~/.bash_profile'
 'gitconfig' = '~/.gitconfig'
 'tmux.conf' = '~/.tmux.conf'
+'scripts/tmux-vim-select-pane' = "~/.local/bin/tmux-vim-select-pane"
 
 [optional]
 source_prefix = "~/code/dotfiles"
