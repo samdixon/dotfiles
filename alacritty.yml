@@ -110,7 +110,7 @@ font:
     #   - (Windows) Consolas
     #family: monospace
   normal:
-          family: "Monospace"
+          family: "Envy Code R"
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -138,7 +138,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 10.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -198,46 +198,6 @@ draw_bold_text_with_bright_colors: true
   #  text: '0xeaeaea'
   #  background: '0x404040'
   # on the `normal` colors.
-  
-colors:
-  # Default colors
-  primary:
-    background: '0x282c34'
-    foreground: '0xabb2bf'
-
-  # Normal colors
-  normal:
-    # NOTE: Use '0x131613' for the `black` color if you'd like to see
-    # black text on the background.
-    black:   '0x282c34'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xabb2bf'
-
-  # Bright colors
-  bright:
-    black:   '0x5c6370'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xffffff'
-  #dim:
-  #  black:   '0x000000'
-  #  red:     '0x8c3336'
-  #  green:   '0x7a8530'
-  #  yellow:  '0x97822e'
-  #  blue:    '0x506d8f'
-  #  magenta: '0x80638e'
-  #  cyan:    '0x497e7a'
-  #  white:   '0x9a9a9a'
-
   # Indexed Colors
   #
   # The indexed colors include all colors from 16 to 256.
@@ -246,10 +206,41 @@ colors:
   # Example:
   #   `- { index: 16, color: '0xff00ff' }`
   #
-  indexed_colors: []
-
+# Colors (Gruvbox light)
 # Visual Bell
 #
+colors:
+  # Default colors
+  primary:
+    background: '0x292C3E'
+    foreground: '0xEBEBEB'
+
+  # Cursor colors
+  cursor:
+   text: '0xFF261E'
+   cursor: '0xFF261E'
+
+  # Normal colors
+  normal:
+    black:   '0x0d0d0d'
+    red:     '0xFF301B'
+    green:   '0xA0E521'
+    yellow:  '0xFFC620'
+    blue:    '0x1BA6FA'
+    magenta: '0x8763B8'
+    cyan:    '0x21DEEF'
+    white:   '0xEBEBEB'
+
+  # Bright colors
+  bright:
+    black:   '0x6D7070'
+    red:     '0xFF4352'
+    green:   '0xB8E466'
+    yellow:  '0xFFD750'
+    blue:    '0x1BA6FA'
+    magenta: '0xA578EA'
+    cyan:    '0x73FBF1'
+    white:   '0xFEFEF8'
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
 # rung, the terminal background will be set to white and transition back to the
 # default background color. You can control the rate of this transition by
