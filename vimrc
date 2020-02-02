@@ -22,9 +22,12 @@ Plugin 'godlygeek/tabular'
 Plugin 'bluz71/vim-moonfly-colors'
 Plugin 'bluz71/vim-moonfly-statusline'
 Plugin 'chaoren/vim-wordmotion'
-Plugin 'shougo/deoplete.nvim'
 Plugin 'morhetz/gruvbox'
 Plugin 'tpope/vim-rails'
+Plugin 'xavierd/clang_complete'
+Plugin 'shougo/deoplete.nvim'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'marlun/vim-starwars'
 
 
 " add all your plugins here (note older versions of Vundle
@@ -47,7 +50,7 @@ set hlsearch
 set nu
 
 set t_Co=256
-colorscheme gruvbox
+colorscheme leya
 " Set Split Locations
 set splitbelow
 set splitright 
@@ -182,6 +185,9 @@ au FileType javascript map <leader>r :!node %<CR>
 
 " C Commands
 au FileType c map <leader>r :!make run<CR>
+" path to directory where library can be found
+let g:clang_library_path='/usr/lib/llvm-6.0/lib/libclang.so.1'
+au FileType cpp map <leader>r :!make run<CR>
 
 " PHP
 au FileType php map <leader>r :!php %<CR>
