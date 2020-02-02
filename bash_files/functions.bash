@@ -33,6 +33,10 @@ function _serve_notes() {
     mg $notedir/
 }
 
+function _search_notes() {
+    rg $1 ~/Dropbox/notes/
+}
+
 # Note Alias
 alias cnote="_create_note"
 alias dnote="_delete_note"
@@ -40,6 +44,7 @@ alias mnote="_move_note"
 alias lnote="_list_notes"
 alias snote="_serve_notes"
 alias notes="_open_notes"
+alias notesearch="_search_notes"
 
 # Azure Functions
 function _az_login() {
