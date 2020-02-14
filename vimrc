@@ -1,5 +1,5 @@
-set nocompatible              " required
-filetype off "required
+set nocompatible "vundle
+filetype off "vundle
 
 " Vundle Start
 " set the runtime path to include Vundle and initialize
@@ -12,22 +12,18 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/seoul256.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'junegunn/goyo.vim'
 Plugin 'fatih/vim-go'
 Plugin 'benmills/vimux'
 Plugin 'raimondi/delimitmate'
 Plugin 'godlygeek/tabular'
-Plugin 'bluz71/vim-moonfly-colors'
-Plugin 'bluz71/vim-moonfly-statusline'
 Plugin 'chaoren/vim-wordmotion'
-Plugin 'morhetz/gruvbox'
-Plugin 'tpope/vim-rails'
 Plugin 'xavierd/clang_complete'
 Plugin 'shougo/deoplete.nvim'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'marlun/vim-starwars'
+Plugin 'kjssad/quantum.vim'
 
 
 " add all your plugins here (note older versions of Vundle
@@ -40,47 +36,57 @@ filetype plugin indent on    " required
 " Vundle End
 
 let g:deoplete#enable_at_startup = 1
+set termguicolors
 
 let mapleader=","
 set noswapfile
 set backspace=indent,eol,start
 set lazyredraw
-set incsearch
-set hlsearch
 set nu
 
+" colors
 set t_Co=256
-colorscheme leya
-" Set Split Locations
+set background=light
+let g:seoul256_background = 255
+colorscheme seoul256-light
+
+" split locations
 set splitbelow
 set splitright 
 
-" Set split navigation
+" split navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Remap visual line down
+" vim split binds
+nmap <Leader>= :vs<CR>
+nmap <Leader>- :sv<CR>
+
+" remap visual line down
 nnoremap j gj
 nnoremap k gk
 
+" search settings
+set incsearch
+set hlsearch
 " Map no highlight
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
-" Remap Escape
-inoremap jj <Esc>
 
+" esc/save/quit maps
+inoremap jj <Esc>
+map ff :w! <CR>
+map qq :q <CR>
+
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 au BufNewFile,BufRead *.go set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 au BufNewFile,BufRead *.c set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set encoding=utf-8
 syntax on
 
-" Splits
-nmap <Leader>= :vs<CR>
-nmap <Leader>- :sv<CR>
 
 " FZF (replaces Ctrl-P, FuzzyFinder and Command-T)
 set rtp+=/usr/local/opt/fzf
@@ -127,7 +133,6 @@ function! s:update_fzf_colors()
         \ (empty(cols) ? '' : (' --color='.join(cols, ',')))
 endfunction
 
-
 " DelimitMate
 let delimitMate_expand_cr = 1
 augroup mydelimitMate
@@ -145,24 +150,16 @@ augroup _fzf
   autocmd VimEnter,ColorScheme * call <sid>update_fzf_colors()
 augroup END
 
-" Temp fix to tearing 
-autocmd BufEnter * highlight Normal guibg=0
-
-" These are things that I mistype and want ignored.
-nmap Q  <silent>
-nmap q: <silent>
-nmap K <silent
-
-
-" I always hit ":W" instead of ":w" because I linger on the shift key...
+" comfy save/quit binds
+" just allows caps
 command! Q q
 command! W w
 command! Wq wq
 command! WQ wq
+nmap Q  <silent>
+nmap q: <silent>
+nmap K <silent
 
-map <F2> :w! <CR>
-map ff :w! <CR>
-map qq :q <CR>
 
 nmap cw ce
 " Go specific commands
@@ -186,7 +183,7 @@ au FileType javascript map <leader>r :!node %<CR>
 " C Commands
 au FileType c map <leader>r :!make run<CR>
 " path to directory where library can be found
-let g:clang_library_path='/usr/lib/llvm-6.0/lib/libclang.so.1'
+let g:clang_library_path='/usr/lib/llvm-7/lib/libclang.so.1'
 au FileType cpp map <leader>r :!make run<CR>
 
 " PHP
