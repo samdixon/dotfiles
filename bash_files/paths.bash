@@ -6,4 +6,4 @@ export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.local/bin
 
 # Env vars
-export EDITOR=nvim
+export EDITOR=vim
