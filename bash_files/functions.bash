@@ -5,7 +5,7 @@ function _open_notes() {
     if [ -z ${1+x} ]; then
         ranger $notedir
     else
-        nvim "$notedir/$1.md"
+        vim "$notedir/$1.md"
     fi
 }
 
@@ -71,7 +71,6 @@ alias commit="git commit"
 alias status="git status"
 alias gdiff="git diff"
 alias pom="git push origin master"
-alias vim="nvim"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ~="cd ~"
