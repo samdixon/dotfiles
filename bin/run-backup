@@ -1,0 +1,87 @@
+#!/usr/bin/python3
+# Simple python script to backups my files
+# Goal is to provide a simple command line interface, gracefully backup my files, and 
+# have zero library deps. Should run on any machine with python3.6 or greater.
+# Requires rsync for remote_sync
+import sys
+MIN_VERSION = (3,6,0)
+if sys.version_info < MIN_VERSION:
+    sys.stderr.write("Python version too low. Requires >= 3.6")
+    sys.exit(1)
+import argparse
+import tarfile
+from datetime import datetime
+from os import path, mkdir
+from subprocess import call
+
+BACKUP_PATH = path.expanduser("~/backups/")
+DEFAULT_FILES = ["~/code", "~/Documents", "~/Downloads", "~/Mail", "~/Pictures"]
+REMOTE_USER = "sdixon"
+REMOTE_IP = "10.0.0.199"
+REMOTE_PATH = "/home/sdixon"
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+        "command",
+        choices = ["local", "quick-sync", "full-sync", "all"],
+        default = "local"
+        )
+parser.add_argument(
+        "--files",
+        nargs = "?",
+        help="Input file of backup paths. Should be one path per line"
+        )
+args = parser.parse_args()
+
+if not path.exists(BACKUP_PATH):
+    os.mkdir(BACKUP_PATH)
+
+timestr = datetime.strftime(datetime.now(), "%m-%d-%Y@%H-%M")
+bname = timestr + "-backup.tar.gz"
+bpath = BACKUP_PATH + bname
+
+if args.files != None:
+    with open(args.files, "r") as f:
+        backup_files = f.read().splitlines()
+else:
+    backup_files = DEFAULT_FILES
+
+def local_backup():
+    with tarfile.open(bpath, "w:gz") as tar:
+        for f in backup_files:
+            try:
+                print(f"backing up {f}")
+                tar.add(path.expanduser(f))
+                print(f"backed up {f} successfully")
+            except Exception as e:
+                print(e)
+
+def sync():
+    print("Performing sync")
+    call(
+            [
+                "rsync", 
+                "-r", 
+                "--progress", 
+                "--archive",
+                "--update",
+                BACKUP_PATH,
+                f"{REMOTE_USER}@{REMOTE_IP}:{REMOTE_PATH}/backups"
+            ])
+
+def full_sync():
+    print("Performing sync")
+    print("This action can take awhile")
+    call(["rsync", "-r", "--progress", BACKUP_PATH, f"{REMOTE_USER}@{REMOTE_IP}:{REMOTE_PATH}/backups"])
+
+
+if args.command == "local":
+    local_backup()
+elif args.command == "full-sync":
+    full_sync()
+elif args.command == "quick-sync":
+    sync()
+else:
+    local_backup()
+    sync()

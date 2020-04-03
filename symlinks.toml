@@ -4,15 +4,14 @@
 "npmrc" = "~/.npmrc"
 'vimrc' = '~/.vimrc'
 'inputrc' = '~/.inputrc'
-#'alacritty.yml' = '~/.config/alacritty/alacritty.yml'
-#'init.vim' = '~/.config/nvim/init.vim'
 'bashrc' = '~/.bashrc'
 'bash_files' = '~/.bash_files'
 'bash_profile' = '~/.bash_profile'
 'gitconfig' = '~/.gitconfig'
 'tmux.conf' = '~/.tmux.conf'
-'scripts/tmux-vim-select-pane' = "~/.local/bin/tmux-vim-select-pane"
+'bin/tmux-vim-select-pane' = "~/.local/bin/tmux-vim-select-pane"
 'fzf' = "~/.fzf"
+'bin' = "~/bin"
 
 [optional]
 source_prefix = "~/code/dotfiles"
