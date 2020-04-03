@@ -14,7 +14,6 @@ Plugin 'benmills/vimux'
 Plugin 'raimondi/delimitmate'
 Plugin 'godlygeek/tabular'
 Plugin 'chaoren/vim-wordmotion'
-Plugin 'neoclide/coc.nvim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'nanotech/jellybeans.vim'
 " add all your plugins here (note older versions of Vundle
