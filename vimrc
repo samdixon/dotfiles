@@ -37,6 +37,13 @@ set t_Co=256
 set background=dark
 colorscheme jellybeans
 
+" gui stuff
+set guifont=Envy\ Code\ R\ 14
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+
+
 " split locations
 set splitbelow
 set splitright 
