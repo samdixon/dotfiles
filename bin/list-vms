@@ -1,0 +1,5 @@
+#!/bin/sh
+# desc = list virtualbox vms
+echo "Virtualbox VM's"
+echo "---------------"
+vboxmanage list vms | awk '{print $1}'

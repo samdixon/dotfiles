@@ -1,0 +1,3 @@
+#!/bin/sh
+# desc = start virtualbox vm
+vboxmanage startvm $1

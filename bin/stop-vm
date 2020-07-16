@@ -1,0 +1,3 @@
+#!/bin/sh
+# desc = stop virtualbox vm
+vboxmanage controlvm $1 poweroff 
