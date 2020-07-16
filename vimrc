@@ -15,7 +15,14 @@ Plugin 'raimondi/delimitmate'
 Plugin 'godlygeek/tabular'
 Plugin 'chaoren/vim-wordmotion'
 Plugin 'scrooloose/nerdtree'
-Plugin 'nanotech/jellybeans.vim'
+Plugin 'zeis/vim-kolor'
+Plugin 'fatih/vim-go'
+Plugin 'lepture/vim-jinja'
+Plugin 'itchyny/lightline.vim'
+Plugin 'neoclide/coc.nvim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'taglist.vim'
+Plugin 'morhetz/gruvbox'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 " All of your Plugins must be added before the following line
@@ -30,18 +37,26 @@ set backspace=indent,eol,start
 set lazyredraw
 set nu
 set encoding=utf-8
+set ruler
 syntax on
+
+set noshowmode
+set laststatus=2
 
 " colors
 set t_Co=256
 set background=dark
-colorscheme jellybeans
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 
 " gui stuff
-set guifont=Envy\ Code\ R\ 14
+set guifont=Sudo\ 16
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
+nmap <C-V> "+gP
+imap <C-V> <ESC><C-V>i
+set belloff=all
 
 
 " split locations
@@ -88,14 +103,22 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 au BufNewFile,BufRead *.c set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 au BufNewFile,BufRead *.md set tabstop=2 softtabstop=2 shiftwidth=2 expandtab autoindent fileformat=unix
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 
 " Python Commands
 au FileType python map <leader>r :!python3 %<CR>
 au FileType python map <leader>t :!pytest -vv<CR>
+nmap <silent> gd <Plug>(coc-definition)
 
 " C Commands
 au FileType c map <leader>r :!make run<CR>
 au FileType cpp map <leader>r :!make run<CR>
+
+" Go
+au FileType go map <leader>r :GoRun<CR>
+
+" Ruby
+au FileType ruby map <leader>r :!ruby %<CR>
 
 " Shell
 au FileType sh map <leader>r :! sh %<CR>
@@ -168,3 +191,4 @@ augroup _fzf
   autocmd!
   autocmd VimEnter,ColorScheme * call <sid>update_fzf_colors()
 augroup END
+let g:coc_disable_startup_warning = 1

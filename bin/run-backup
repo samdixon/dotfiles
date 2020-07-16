@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# desc = simple homebrew backup script
 # Simple python script to backups my files
 # Goal is to provide a simple command line interface, gracefully backup my files, and 
 # have zero library deps. Should run on any machine with python3.6 or greater.
@@ -6,57 +7,85 @@
 import sys
 MIN_VERSION = (3,6,0)
 if sys.version_info < MIN_VERSION:
-    sys.stderr.write("Python version too low. Requires >= 3.6")
+    print("Python version too low. Requires >= 3.6", file=sys.stderr)
     sys.exit(1)
 import argparse
 import tarfile
 from datetime import datetime
 from os import path, mkdir
+from platform import node
 from subprocess import call
+from shutil import which
 
-BACKUP_PATH = path.expanduser("~/backups/")
-DEFAULT_FILES = ["~/code", "~/Documents", "~/Downloads", "~/Mail", "~/Pictures"]
+
+
+### default variables used by parser 
+HOSTNAME = node()
+DEFAULT_BACKUP_PATH = path.expanduser("~/backups/")
+DEFAULT_FILES = ["~/sjd"]
 REMOTE_USER = "sdixon"
 REMOTE_IP = "10.0.0.199"
-REMOTE_PATH = "/home/sdixon"
-
+REMOTE_PATH = "/home/sdixon/backups"
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
         "command",
-        choices = ["local", "quick-sync", "full-sync", "all"],
+        choices = ["local", "sync","quick-sync", "full-sync", "all"],
         default = "local"
         )
 parser.add_argument(
-        "--files",
-        nargs = "?",
+        "--pathfile",
         help="Input file of backup paths. Should be one path per line"
+        )
+parser.add_argument(
+        "--remote-user",
+        default="sdixon"
+        )
+parser.add_argument(
+        "--remote-ip",
+        default="10.0.0.199"
+        )
+parser.add_argument(
+        "--backup-name",
+        default=datetime.strftime(datetime.now(), "%m-%d-%Y@%H-%M") + f"-{HOSTNAME}.tar.gz"
+        )
+parser.add_argument(
+        "--backup-destination",
+        default=DEFAULT_BACKUP_PATH
         )
 args = parser.parse_args()
 
-if not path.exists(BACKUP_PATH):
-    os.mkdir(BACKUP_PATH)
+## small argument manipulation to ensure if the user gives a custom backup name it has targz ending
+if ".tar.gz" not in args.backup_name:
+    args.backup_name = args.backup_name + ".tar.gz"
 
-timestr = datetime.strftime(datetime.now(), "%m-%d-%Y@%H-%M")
-bname = timestr + "-backup.tar.gz"
-bpath = BACKUP_PATH + bname
+# crafts the full backup path variable by concating the local backup destination and the backup name from args
+BACKUP_PATH = args.backup_destination + args.backup_name
 
-if args.files != None:
-    with open(args.files, "r") as f:
+if not path.exists(args.backup_destination):
+    mkdir(args.backup_destination)
+
+# this determines where the backup_files are
+# if the user specifies a file it will read line by lines paths from that file
+# otherwise it just uses the default value
+if args.pathfile != None:
+    with open(args.pathfile, "r") as f:
         backup_files = f.read().splitlines()
 else:
     backup_files = DEFAULT_FILES
 
+# runs a local backup on the specified path
 def local_backup():
-    with tarfile.open(bpath, "w:gz") as tar:
+    with tarfile.open(BACKUP_PATH, "w:gz") as tar:
         for f in backup_files:
             try:
                 print(f"backing up {f}")
                 tar.add(path.expanduser(f))
                 print(f"backed up {f} successfully")
             except Exception as e:
-                print(e)
+                print(e, file=sys.stderr)
 
+# performs a diff rsync of backup files in backup path to specified remote
 def sync():
     print("Performing sync")
     call(
@@ -66,22 +95,27 @@ def sync():
                 "--progress", 
                 "--archive",
                 "--update",
-                BACKUP_PATH,
-                f"{REMOTE_USER}@{REMOTE_IP}:{REMOTE_PATH}/backups"
+                args.backup_destination,
+                f"{REMOTE_USER}@{REMOTE_IP}:{REMOTE_PATH}"
             ])
 
+# performs a full sync of all backups files to specified remote
 def full_sync():
-    print("Performing sync")
+    print("Performing full sync")
     print("This action can take awhile")
-    call(["rsync", "-r", "--progress", BACKUP_PATH, f"{REMOTE_USER}@{REMOTE_IP}:{REMOTE_PATH}/backups"])
+    call(["rsync", "-r", "--progress", BACKUP_PATH, f"{REMOTE_USER}@{REMOTE_IP}:{REMOTE_PATH}"])
 
 
-if args.command == "local":
-    local_backup()
-elif args.command == "full-sync":
-    full_sync()
-elif args.command == "quick-sync":
-    sync()
-else:
-    local_backup()
-    sync()
+# worlds simplest call tree
+try:
+    if args.command == "local":
+        local_backup()
+    elif args.command == "full-sync":
+        full_sync()
+    elif args.command == "sync":
+        sync()
+    else:
+        print("command not specified")
+except KeyboardInterrupt as k:
+    ## TODO have it remove items
+    print("Backup cancelled ungracefully.")
