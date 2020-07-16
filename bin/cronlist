@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# desc = list cronjobs
 # System-wide crontab file and cron job directory. Change these for your system.
 CRONTAB='/etc/crontab'
 CRONDIR='/etc/cron.d'

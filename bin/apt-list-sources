@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# desc = list external apt sources
 import os
 import sys
 class colors:
