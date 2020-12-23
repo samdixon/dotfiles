@@ -10,19 +10,14 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'benmills/vimux'
 Plugin 'raimondi/delimitmate'
-Plugin 'godlygeek/tabular'
 Plugin 'chaoren/vim-wordmotion'
 Plugin 'scrooloose/nerdtree'
-Plugin 'zeis/vim-kolor'
-Plugin 'fatih/vim-go'
-Plugin 'lepture/vim-jinja'
 Plugin 'itchyny/lightline.vim'
-Plugin 'neoclide/coc.nvim'
+Plugin 'morhetz/gruvbox'
+
 Plugin 'sheerun/vim-polyglot'
 Plugin 'taglist.vim'
-Plugin 'morhetz/gruvbox'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 " All of your Plugins must be added before the following line
@@ -35,7 +30,7 @@ let mapleader=","
 set noswapfile
 set backspace=indent,eol,start
 set lazyredraw
-set nu
+set number
 set encoding=utf-8
 set ruler
 syntax on
@@ -45,12 +40,12 @@ set laststatus=2
 
 " colors
 set t_Co=256
-set background=dark
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
+set background=dark
 
-" gui stuff
-set guifont=Sudo\ 16
+" vim gtk
+set guifont=Fira\ Code\ Regular\ 12
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
@@ -95,8 +90,11 @@ nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 " esc/save/quit maps
 inoremap jj <Esc>
-map ff :w! <CR>
+map ff :w <CR>
 map qq :q <CR>
+
+" nerdtree 
+nmap <leader>t :NERDTreeToggle<CR>
 
 " Default and file specific tab stops
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
@@ -108,27 +106,9 @@ au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 " Python Commands
 au FileType python map <leader>r :!python3 %<CR>
 au FileType python map <leader>t :!pytest -vv<CR>
-nmap <silent> gd <Plug>(coc-definition)
-
-" C Commands
-au FileType c map <leader>r :!make run<CR>
-au FileType cpp map <leader>r :!make run<CR>
-
-" Go
-au FileType go map <leader>r :GoRun<CR>
-
-" Ruby
-au FileType ruby map <leader>r :!ruby %<CR>
 
 " Shell
 au FileType sh map <leader>r :! sh %<CR>
-
-" Vimux Commands
-map <leader>vp :VimuxPromptCommand<CR>
-map <leader>vv :VimuxRunLastCommand<CR>
-
-" nerdtree 
-nmap <leader>t :NERDTreeToggle<CR>
 
 " FZF (replaces Ctrl-P, FuzzyFinder and Command-T)
 set rtp+=/usr/local/opt/fzf
@@ -191,4 +171,3 @@ augroup _fzf
   autocmd!
   autocmd VimEnter,ColorScheme * call <sid>update_fzf_colors()
 augroup END
-let g:coc_disable_startup_warning = 1
