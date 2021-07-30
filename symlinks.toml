@@ -10,9 +10,7 @@
 'gitconfig' = '~/.gitconfig'
 'tmux.conf' = '~/.tmux.conf'
 'bin/tmux-vim-select-pane' = "~/.local/bin/tmux-vim-select-pane"
-'fzf' = "~/.fzf"
 'bin' = "~/bin"
-'gtk.css' = "~/.config/gtk-3.0/gtk.css"
 '!~/Dropbox/sjd' = '~/sjd'
 
 [optional]
