@@ -1,31 +1,45 @@
-#!/usr/bin/env python3
-# desc = list my custom stuff
+#! /usr/bin/env python3
+# desc = list binaries/scripts located in ~/bin
+# what is the goal of this program
+# list the binaries/shell scripts i've made executable and available in my ~/bin directory
 import os
-import re
 
-files = os.listdir(os.path.expanduser("~/bin"))
-files.sort()
-
-descriptions = []
-headers = ["File", "Description"]
+BINROOT = os.path.expanduser("~/bin")
+files = os.listdir(BINROOT)
+LARGEST_FILENAME = 0
+for file in files:
+    if len(file) > LARGEST_FILENAME:
+        LARGEST_FILENAME = len(file)
+files = [f"{BINROOT}/{file}" for file in files]
+filenames_with_description = []
 
 for file in files:
-    with open(file, 'r') as f:
-        x = ""
-        a = f.readlines()
-        try:
-            if a[1].startswith("# desc"):
-                x = a[1]
-                x = re.sub("# desc =", "", x)
-                x = x.rstrip("\n")
-            descriptions.append([f.name, x])
-        except Exception as e:
-            descriptions.append([f.name, "no description"])
-
-print(headers[0], '\t\t\t', headers[1])
-print("----", '\t\t\t', "-----------")
-for item in descriptions:
-    if len(item[0]) < 12:
-        print(item[0], '\t\t', item[1])
+    try:
+        f = open(file)
+    except IsADirectoryError as e:
+        continue
+    desc_line = f.readlines()[1]
+    if "desc" in desc_line:
+        description = desc_line.split("=")[1]
+        description = description.strip()
     else:
-        print(item[0], '\t', item[1])
+        description = "no description provided"
+
+    filenames_with_description.append({
+        "name" : file.replace(f"{BINROOT}/", ""),
+        "description" : description
+    })
+
+
+def generate_space_gap(spaces_count):
+    space = "  "
+    while spaces_count > 0:
+        space = space + " "
+        spaces_count = spaces_count - 1
+    return space
+
+# basically a really quick hacked up table
+print("Binary" + generate_space_gap((LARGEST_FILENAME - len("Binary"))) + "Description")
+for file in filenames_with_description:
+    spaces_count = LARGEST_FILENAME - len(file['name'])
+    print(f"{file['name']}{generate_space_gap(spaces_count)}{file['description']}")
