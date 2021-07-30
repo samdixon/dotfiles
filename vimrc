@@ -12,12 +12,13 @@ Plugin 'tpope/vim-commentary'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'raimondi/delimitmate'
 Plugin 'chaoren/vim-wordmotion'
-Plugin 'scrooloose/nerdtree'
 Plugin 'itchyny/lightline.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'fatih/vim-go'
+Plugin 'scrooloose/nerdtree'
+Plugin 'neovim/nvim-lspconfig'
 
 Plugin 'sheerun/vim-polyglot'
-Plugin 'taglist.vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 " All of your Plugins must be added before the following line
@@ -43,15 +44,6 @@ set t_Co=256
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 set background=dark
-
-" vim gtk
-set guifont=Fira\ Code\ Regular\ 12
-set guioptions-=T
-set guioptions-=r
-set guioptions-=L
-nmap <C-V> "+gP
-imap <C-V> <ESC><C-V>i
-set belloff=all
 
 
 " split locations
@@ -93,9 +85,6 @@ inoremap jj <Esc>
 map ff :w <CR>
 map qq :q <CR>
 
-" nerdtree 
-nmap <leader>t :NERDTreeToggle<CR>
-
 " Default and file specific tab stops
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
@@ -103,11 +92,13 @@ au BufNewFile,BufRead *.c set tabstop=4 softtabstop=4 shiftwidth=4 expandtab aut
 au BufNewFile,BufRead *.md set tabstop=2 softtabstop=2 shiftwidth=2 expandtab autoindent fileformat=unix
 au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 
-" Python Commands
+" various filesettings
 au FileType python map <leader>r :!python3 %<CR>
 au FileType python map <leader>t :!pytest -vv<CR>
-
-" Shell
+au FileType php map <leader>r :!php %<CR>
+au FileType ruby map <leader>r :!ruby %<CR>
+au FileType c map <leader>r :!gcc % && ./a.out<CR>
+au FileType go map <leader>r :GoRun %<CR>
 au FileType sh map <leader>r :! sh %<CR>
 
 " FZF (replaces Ctrl-P, FuzzyFinder and Command-T)
@@ -165,9 +156,4 @@ augroup mydelimitMate
   au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
   au FileType scm let b:delimitMate_matchpairs = "(:)"
   au FileType scm let b:delimitMate_autoClose=1
-augroup END
-
-augroup _fzf
-  autocmd!
-  autocmd VimEnter,ColorScheme * call <sid>update_fzf_colors()
 augroup END
