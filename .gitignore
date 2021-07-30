@@ -2,3 +2,4 @@ __pycache__
 .vscode
 t.py
 .pyc
+.DS_Store
