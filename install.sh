@@ -18,6 +18,11 @@ for f in .???*; do
 	(cd ~/; ln -s .dotfiles/$f $f)
 done
 
+for f in Library/Application\ Support/Code/User/*; do
+    rm -f ~/$f
+    (cd ~/; ln -s .dotfiles/$f $f)
+done
+
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
 	git clone https://github.com/VundleVim/Vundle.vim.git \
 		~/.vim/bundle/Vundle.vim
