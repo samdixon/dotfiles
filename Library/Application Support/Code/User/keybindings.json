@@ -1,0 +1,130 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "command": "vscode-neovim.compositeEscape1",
+        "key": "j",
+        "when": "neovim.mode == insert && editorTextFocus",
+        "args": "j",
+    },
+    {
+        "key": "cmd+1",
+        "when": "sideBarFocus",
+        "command": "workbench.action.focusActiveEditorGroup",
+    },
+    {
+        "command": "workbench.action.openEditorAtIndex1",
+        "when": "!sideBarFocus",
+        "key": "cmd+1",
+    },
+    {
+        "key": "ctrl+1",
+        "command": "-workbench.action.openEditorAtIndex1"
+    },
+    {
+        "command": "workbench.action.openEditorAtIndex2",
+        "key": "cmd+2",
+    },
+    {
+        "key": "ctrl+2",
+        "command": "-workbench.action.openEditorAtIndex2"
+    },
+    {
+        "command": "workbench.action.openEditorAtIndex3",
+        "key": "cmd+3",
+    },
+    {
+        "key": "ctrl+3",
+        "command": "-workbench.action.openEditorAtIndex3"
+    },
+    {
+        "command": "workbench.action.openEditorAtIndex4",
+        "key": "cmd+4",
+    },
+    {
+        "key": "ctrl+4",
+        "command": "-workbench.action.openEditorAtIndex4"
+    },
+    {
+        "command": "workbench.action.openEditorAtIndex5",
+        "key": "cmd+5",
+    },
+    {
+        "command": "workbench.action.openEditorAtIndex6",
+        "key": "cmd+6",
+    },
+    {
+        "command": "workbench.action.openEditorAtIndex7",
+        "key": "cmd+7",
+    },
+    {
+        "command": "workbench.action.openEditorAtIndex8",
+        "key": "cmd+8",
+    },
+    {
+        "command": "workbench.action.openEditorAtIndex9",
+        "key": "cmd+9",
+    },
+    {
+        "key": "ctrl+1",
+        "command": "workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "cmd+1",
+        "command": "-workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "ctrl+2",
+        "command": "workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "cmd+2",
+        "command": "-workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "ctrl+3",
+        "command": "workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "cmd+3",
+        "command": "-workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "cursorPageDown"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "cursorPageUp"
+    },
+    {
+        "key": "alt+left",
+        "command": "cursorWordPartLeft",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+right",
+        "command": "cursorWordPartRight",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+shift+left",
+        "command": "cursorWordPartLeftSelect",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+shift+right",
+        "command": "cursorWordPartRightSelect",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+backspace",
+        "command": "deleteWordPartLeft",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+delete",
+        "command": "deleteWordPartRight",
+        "when": "editorTextFocus"
+    }
+
+]

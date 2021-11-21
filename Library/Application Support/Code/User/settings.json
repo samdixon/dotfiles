@@ -1,0 +1,21 @@
+{
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "editor.fontFamily": "'Jetbrains Mono'",
+    "editor.fontSize": 18,
+    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.darwin": "/Users/samdixon/.config/nvim/init.vim",
+    "editor.minimap.enabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "git.countBadge": "off",
+    "workbench.activityBar.visible": false,
+    "python.linting.enabled": false,
+    "window.zoomLevel": -1,
+    "editor.cursorStyle": "block"
+}
