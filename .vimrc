@@ -16,7 +16,6 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdtree'
-Plugin 'neovim/nvim-lspconfig'
 
 Plugin 'sheerun/vim-polyglot'
 " add all your plugins here (note older versions of Vundle

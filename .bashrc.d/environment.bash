@@ -1,10 +1,9 @@
 # env
 export PATH="/opt/homebrew/bin:$PATH:$HOME/bin:$HOME/.npm-packages/bin:$HOME/.local/bin"
-export EDITOR=nvim
+export EDITOR=vim
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export notes_dir="/Users/samdixon/sjd/notes"
 #alias
-alias vim='nvim'
 alias a='. awsume'
 alias awsume='. awsume'
 alias awesume='. awsume'
