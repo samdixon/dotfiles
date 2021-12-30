@@ -1,5 +1,4 @@
 #!/bin/sh
-set -e
 
 rm -rf ~/.bash* \
 	~/.zsh* \
