@@ -40,10 +40,6 @@ set laststatus=2
 
 " colors
 set t_Co=256
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
-set background=dark
-
 
 " split locations
 set splitbelow
@@ -81,8 +77,6 @@ nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 " esc/save/quit maps
 inoremap jj <Esc>
-map ff :w <CR>
-map qq :q <CR>
 
 " Default and file specific tab stops
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
@@ -100,7 +94,7 @@ au FileType c map <leader>r :!gcc % && ./a.out<CR>
 au FileType go map <leader>r :GoRun %<CR>
 au FileType sh map <leader>r :! sh %<CR>
 
-" FZF (replaces Ctrl-P, FuzzyFinder and Command-T)
+" FZF
 set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
 nmap ; :Buffers<CR>

@@ -1,12 +1,9 @@
 # env
-export PATH="/opt/homebrew/bin:$PATH:$HOME/bin:$HOME/.npm-packages/bin:$HOME/.local/bin"
+export PATH="/opt/homebrew/bin:$PATH:$HOME/bin:$HOME/.npm-packages/bin:$HOME/.local/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/Library/PostgreSQL/14/bin"
 export EDITOR=vim
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export notes_dir="/Users/samdixon/sjd/notes"
 #alias
-alias a='. awsume'
 alias awsume='. awsume'
-alias awesume='. awsume'
 alias ls='ls -G'
 # prompt
 PS1=$'\[\033[01;95m\]\u@\h\[\033[00m\]: \[\033[01;34m\]\w\n\[\033[00m\]$ '
