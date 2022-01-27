@@ -12,11 +12,6 @@ Plugin 'tpope/vim-commentary'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'raimondi/delimitmate'
 Plugin 'chaoren/vim-wordmotion'
-Plugin 'itchyny/lightline.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'fatih/vim-go'
-Plugin 'scrooloose/nerdtree'
-
 Plugin 'sheerun/vim-polyglot'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
