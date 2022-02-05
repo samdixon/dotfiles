@@ -1,3 +1,3 @@
 ```
-curl https://raw.githubusercontent.com/samdixon/dotfiles/master/install.sh | sh
+curl https://raw.githubusercontent.com/samdixon/dotfiles/master/install.sh | bash
 ```
