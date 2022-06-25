@@ -29,7 +29,6 @@ if [ ! -d ~/.fzf ]; then
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    xcode-select --install
     SHELL_PATH="/opt/homebrew/bin/bash"
     if [[ $(cat $SHELL_PATH | grep $SHELL_PATH) ]]; then
         echo $SHELL_PATH | sudo tee -a /etc/shells
