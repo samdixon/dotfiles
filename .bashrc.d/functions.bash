@@ -20,3 +20,5 @@ cdg() {
    fi
 }
 export -f cdg > /dev/null
+
+alias runmake='$(cat Makefile | grep : | cut -d ":" -f1 | awk '\''{print "make " $0}'\'' - | fzf)'

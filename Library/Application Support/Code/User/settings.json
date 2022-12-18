@@ -1,21 +1,100 @@
 {
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+      "*.ipynb": "jupyter-notebook"
     },
+    "editor.lineDecorationsWidth": 0,
+    "scm.diffDecorations": "gutter",
+    "editor.occurrencesHighlight": false,
+    "editor.selectionHighlight": false,
     "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
+      "default": "right",
+      "jupyter-notebook": "left"
     },
-    "editor.fontFamily": "'Jetbrains Mono'",
-    "editor.fontSize": 18,
+    "editor.fontFamily": "Jetbrains Mono",
+    "editor.fontSize": 15,
     "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
     "vscode-neovim.neovimInitVimPaths.darwin": "/Users/samdixon/.config/nvim/init.vim",
+    "extensions.experimental.affinity": {
+      "asvetliakov.vscode-neovim": 1
+    },
     "editor.minimap.enabled": false,
     "python.linting.flake8Enabled": true,
     "python.formatting.provider": "black",
     "git.countBadge": "off",
-    "workbench.activityBar.visible": false,
     "python.linting.enabled": false,
-    "window.zoomLevel": -1,
-    "editor.cursorStyle": "block"
-}
+    "workbench.startupEditor": "none",
+    "editor.renderWhitespace": "none",
+    "breadcrumbs.enabled": false,
+    "redhat.telemetry.enabled": false,
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.suggest.showIcons": false,
+    "breadcrumbs.icons": false,
+    "outline.icons": false,
+    "terminal.explorerKind": "external",
+    "workbench.activityBar.visible": false,
+    "workbench.tips.enabled": false,
+    "workbench.editor.decorations.badges": false,
+    "workbench.editor.enablePreview": false,
+    "editor.renderControlCharacters": false,
+    "workbench.iconTheme": "vscode-icons",
+    "vsicons.dontShowNewVersionMessage": true,
+    "json.schemas": [],
+    "yaml.customTags": [
+      "!And",
+      "!And sequence",
+      "!If",
+      "!If sequence",
+      "!Not",
+      "!Not sequence",
+      "!Equals",
+      "!Equals sequence",
+      "!Or",
+      "!Or sequence",
+      "!FindInMap",
+      "!FindInMap sequence",
+      "!Base64",
+      "!Join",
+      "!Join sequence",
+      "!Cidr",
+      "!Ref",
+      "!Sub",
+      "!Sub sequence",
+      "!GetAtt",
+      "!GetAZs",
+      "!ImportValue",
+      "!ImportValue sequence",
+      "!Select",
+      "!Select sequence",
+      "!Split",
+      "!Split sequence"
+    ],
+    // "workbench.statusBar.visible": false,
+    "aws.telemetry": false,
+    "terminal.integrated.defaultLocation": "editor",
+    "terminal.integrated.tabs.enabled": false,
+    "terminal.integrated.tabs.enableAnimation": false,
+    "explorer.confirmDelete": false,
+    "editor.suggest.showMethods": true,
+    "editor.suggest.preview": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.snippetSuggestions": "top",
+    "workbench.layoutControl.enabled": false,
+    "editor.cursorStyle": "block",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.verticalScrollbarSize": 0,
+    "search.useGlobalIgnoreFiles": true,
+    "window.titleBarStyle": "native",
+    "editor.smoothScrolling": false,
+    "explorer.autoReveal": false,
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "window.zoomLevel": 1
+  }
+  
