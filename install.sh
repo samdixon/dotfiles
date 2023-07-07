@@ -1,5 +1,6 @@
 #!/bin/bash
-rm -rf ~/.bash* \
+rm -rf ~/.bash_profile \
+	~/.bashrc \
 	~/.zsh* \
 	~/.profile
 
@@ -18,35 +19,57 @@ for f in .???*; do
     fi
 done
 
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-	git clone https://github.com/VundleVim/Vundle.vim.git \
-		~/.vim/bundle/Vundle.vim
-fi
-
 if [ ! -d ~/.fzf ]; then
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    SHELL_PATH="/opt/homebrew/bin/bash"
-    if [[ $(cat $SHELL_PATH | grep $SHELL_PATH) ]]; then
-        echo $SHELL_PATH | sudo tee -a /etc/shells
-        chsh -s $SHELL_PATH
+    # the top of this block is personal modifications,
+    # after dock settings, most are plucked straight from mathias bynens setup
+    # https://github.com/mathiasbynens/dotfiles/blob/main/.macos
+
+    # a few settings I always adjust that are not captured here
+    # and need to manually configured:
+    #  - f1-f12 keys -> normal f keys
+    #  - caps lock -> control
+    #  - keyboard navigation to move between controls
+    #    settings -> keyboard -> shortcuts -> ''Use keyboard ... controls'
+    #  - night shift always on
+
+    sudo -v
+    # if we don't have homebrew, go ahead and install it
+    # todo: if no brew, install brew
+    if [[ ! -f "/opt/homebrew/bin/brew" ]]; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    # most from https://github.com/mathiasbynens/dotfiles/blob/main/.macos
-    # personal modifications at top
-    sudo -v 
+    # add brew bash to available shells
+    # if no brew bash installed, install it first
+    SHELL_PATH="/opt/homebrew/bin/bash"
+    if [[ -f "$SHELL_PATH" ]]; then
+        echo "$SHELL_PATH" | sudo tee -a /etc/shells
+        chsh -s $SHELL_PATH
+    else
+        brew install bash;
+        echo "$SHELL_PATH" | sudo tee -a /etc/shells;
+        chsh -s $SHELL_PATH;
+    fi
+
 
     # Set a pretty fast keyboard repeat rate
     defaults write NSGlobalDomain KeyRepeat -int 2
-    defaults write NSGlobalDomain InitialKeyRepeat -int 15 
+    defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
-    # Terminal and terminal profile
-    open ~/.dotfiles/sjd.terminal
-    defaults write com.apple.dock "Default Window Settings" -string "sjd"
-    defaults write com.apple.dock "Startup Window Settings" -string "sjd"
+    # cmd + click drag window similar to x11
+    defaults write -g NSWindowShouldDragOnGesture -bool true
+
+    # remove all .DS_store files which hold information about finder window display
+    # only removing for user dir
+    find $HOME -name ".DS_Store" -depth -exec rm {} \;
+
+    # then set finder to use list view by default
+    defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
     # Dock position, hiding, size
     defaults write com.apple.dock orientation -string "left"
