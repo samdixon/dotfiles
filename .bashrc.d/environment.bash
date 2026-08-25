@@ -6,6 +6,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 #alias
 alias awsume='. awsume 2>&1'
 alias clcopy='tail -n 1 | tee >(pbcopy)'
+alias ls='ls -G'
 
 # prompt
 PS1=$'\[\033[01;95m\]\u@\h\[\033[00m\]: \[\033[01;34m\]\w\n\[\033[00m\]$ '
