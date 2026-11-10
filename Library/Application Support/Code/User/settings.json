@@ -4,34 +4,24 @@
     },
     "editor.lineDecorationsWidth": 0,
     "scm.diffDecorations": "gutter",
-    "editor.occurrencesHighlight": false,
+    "editor.occurrencesHighlight": "off",
     "editor.selectionHighlight": false,
     "notebook.cellToolbarLocation": {
       "default": "right",
       "jupyter-notebook": "left"
     },
-    "editor.fontFamily": "Jetbrains Mono",
-    "editor.fontSize": 15,
-    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
-    "vscode-neovim.neovimInitVimPaths.darwin": "/Users/samdixon/.config/nvim/init.vim",
-    "extensions.experimental.affinity": {
-      "asvetliakov.vscode-neovim": 1
-    },
+    "editor.fontFamily": "Jetbrains Mono NL",
+    "editor.fontSize": 18,
     "editor.minimap.enabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.formatting.provider": "black",
     "git.countBadge": "off",
-    "python.linting.enabled": false,
     "workbench.startupEditor": "none",
     "editor.renderWhitespace": "none",
     "breadcrumbs.enabled": false,
-    "redhat.telemetry.enabled": false,
     "editor.scrollbar.horizontal": "hidden",
     "editor.suggest.showIcons": false,
     "breadcrumbs.icons": false,
     "outline.icons": false,
     "terminal.explorerKind": "external",
-    "workbench.activityBar.visible": false,
     "workbench.tips.enabled": false,
     "workbench.editor.decorations.badges": false,
     "workbench.editor.enablePreview": false,
@@ -83,7 +73,6 @@
     "editor.scrollbar.vertical": "hidden",
     "editor.scrollbar.verticalScrollbarSize": 0,
     "search.useGlobalIgnoreFiles": true,
-    "window.titleBarStyle": "native",
     "editor.smoothScrolling": false,
     "explorer.autoReveal": false,
     "[typescript]": {
@@ -95,6 +84,13 @@
     "[json]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "window.zoomLevel": 1
-  }
-  
+    "window.zoomLevel": 0,
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+    "chat.titleBar.signIn.enabled": false,
+    "chat.disableAIFeatures": true,
+    "claudeCode.preferredLocation": "sidebar",
+    "chat.mcp.serverSampling": {},
+    "claudeCode.hideOnboarding": true,
+    "workbench.colorTheme": "Atom One Dark",
+    "workbench.activityBar.location": "hidden"
+}

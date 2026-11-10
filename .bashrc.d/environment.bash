@@ -1,10 +1,9 @@
 # env
-export PATH="/opt/homebrew/bin:$PATH:$HOME/bin:$HOME/.npm-packages/bin:$HOME/.local/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/Library/PostgreSQL/14/bin"
+export PATH="/opt/homebrew/bin:$PATH:$HOME/bin:$HOME/.npm-packages/bin:$HOME/.local/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/Applications/Postgres.app/Contents/Versions/latest/bin"
 export EDITOR=vim
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 #alias
-alias awsume='. awsume 2>&1'
 alias clcopy='tail -n 1 | tee >(pbcopy)'
 alias ls='ls -G'
 
@@ -30,4 +29,4 @@ if [ -s "$NVM_DIR/bash_completion" ]; then
 fi
 
 # shell completions
-[ -f /usr/local/bin/aws_completer ] && complete -C '/usr/local/bin/aws_completer' aws
+[ -x "$HOME/.local/bin/aws_completer" ] && complete -C "$HOME/.local/bin/aws_completer" aws

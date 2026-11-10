@@ -77,6 +77,7 @@ link_tree() {
 	mkdir -p "$HOME/$dir"
 	while IFS= read -r -d '' rel; do
 		rel=${rel#./}
+		git check-ignore -q -- "$dir/$rel" && continue
 		# absolute target: a relative one would resolve against the link's own
 		# directory, not $HOME, once we're more than one level deep
 		link "$DOTFILES/$dir/$rel" "$HOME/$dir/$rel"
@@ -89,6 +90,8 @@ cd "$DOTFILES"
 for f in .??* *; do
 	[[ -e $f ]] || continue
 	contains "$f" "${NO_LINK[@]}" && continue
+	# local-only state (.claude/, .DS_Store, ...) must never land in $HOME
+	git check-ignore -q -- "$f" && continue
 	if contains "$f" "${RECURSE[@]}"; then
 		link_tree "$f"
 	else
