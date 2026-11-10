@@ -49,6 +49,16 @@ need_sudo() {
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 	KEEPALIVE_PID=$!
 }
+# For optional steps: same as need_sudo, but a refused or unavailable password
+# prompt skips the step instead of ending the run.
+try_sudo() {
+	[[ -n $SUDO_READY ]] && return 0
+	# no cached credentials and no terminal to prompt on: nothing to try
+	sudo -n true 2>/dev/null || { : >/dev/tty; } 2>/dev/null || return 1
+	sudo -v || return 1
+	need_sudo "$@"
+}
+
 trap '[[ -n $KEEPALIVE_PID ]] && kill "$KEEPALIVE_PID" 2>/dev/null || true' EXIT
 
 # On a fresh Mac /usr/bin/git is a stub that pops up the Command Line Tools
@@ -197,7 +207,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	fi
 
 	DOCK_DOMAINS=(com.apple.dock com.apple.WindowManager)
-	FINDER_DOMAINS=(com.apple.finder NSGlobalDomain com.apple.screencapture com.apple.Siri)
+	FINDER_DOMAINS=(com.apple.finder NSGlobalDomain com.apple.screencapture com.apple.Siri com.apple.HIToolbox)
 	DOCK_BEFORE=$(prefs_state "${DOCK_DOMAINS[@]}")
 	FINDER_BEFORE=$(prefs_state "${FINDER_DOMAINS[@]}")
 
@@ -415,18 +425,77 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	set_default com.apple.screencapture show-thumbnail -bool false
 	set_default com.apple.screencapture disable-shadow -bool true
 
-	# Menu bar: hide itself until the pointer reaches the top of the screen
-	# (takes effect at next login), and drop the Spotlight and Siri icons
-	set_default NSGlobalDomain _HIHideMenuBar -bool true
+	# Menu bar: always visible (auto-hiding leaves a bare notch on laptops), but
+	# without the Spotlight and Siri icons
+	set_default NSGlobalDomain _HIHideMenuBar -bool false
 	set_default -currentHost com.apple.Spotlight MenuItemHidden -int 1
 	set_default com.apple.Siri StatusMenuVisible -bool false
 
-	# Less motion and transparency. This domain is TCC-protected, so like Mail
-	# it only works once the terminal has Full Disk Access.
+	# ---- classic look: undo what Tahoe's Liquid Glass redesign changed ----
+
+	# Solid menu bar background instead of a transparent one
+	set_default NSGlobalDomain SLSMenuBarUseBlurredAppearance -bool true
+
+	# No glyph next to every menu item
+	set_default NSGlobalDomain NSMenuEnableActionImages -bool false
+
+	# Windows don't pick up a tint from the wallpaper behind them
+	set_default NSGlobalDomain AppleReduceDesktopTinting -bool true
+
+	# Classic blue accent and highlight colour
+	set_default NSGlobalDomain AppleAccentColor -int 4
+	set_default NSGlobalDomain AppleAquaColorVariant -int 1
+	set_default NSGlobalDomain AppleHighlightColor -string "0.698039 0.843137 1.000000 Blue"
+
+	# Windows stay where they're dropped: no tiling when dragged to a screen
+	# edge or the menu bar, and no tiling preview while holding option
+	set_default com.apple.WindowManager EnableTilingByEdgeDrag -bool false
+	set_default com.apple.WindowManager EnableTopTilingByEdgeDrag -bool false
+	set_default com.apple.WindowManager EnableTilingOptionAccelerator -bool false
+
+	# Windows open, close and resize without animation
+	set_default NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+	set_default NSGlobalDomain NSWindowResizeTime -float 0.001
+
+	# Title bar folder icon appears immediately instead of after a hover delay
+	set_default NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
+
+	# Quitting an app closes its windows; they don't come back on relaunch
+	set_default NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
+	# ---- less assistant, less noise ----
+
+	# Siri off
+	set_default com.apple.assistant.support "Assistant Enabled" -bool false
+
+	# fn/globe key does nothing on its own (no emoji picker, no dictation)
+	set_default com.apple.HIToolbox AppleFnUsageType -int 0
+
+	# No interface sound effects, no pop when changing volume
+	set_default NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
+	set_default NSGlobalDomain com.apple.sound.beep.feedback -int 0
+
+	# No startup chime. Stored in NVRAM, so it needs sudo; skipped with a
+	# warning when there's no way to ask for a password.
+	if [[ "$(nvram StartupMute 2>/dev/null | awk '{print $2}')" != "%01" ]]; then
+		if try_sudo "muting the startup chime"; then
+			sudo nvram StartupMute=%01
+		else
+			warn "startup chime left on (no sudo). to fix: sudo nvram StartupMute=%01"
+		fi
+	fi
+
+	# Accessibility display options: less motion and transparency, borders on
+	# toolbar buttons, always-visible title bar icons, higher contrast. This
+	# domain is TCC-protected, so like Mail it only works once the terminal has
+	# Full Disk Access.
 	if defaults write com.apple.universalaccess reduceMotion -bool true 2>/dev/null; then
 		set_default com.apple.universalaccess reduceTransparency -bool true
+		set_default com.apple.universalaccess showToolbarButtonShapes -bool true
+		set_default com.apple.universalaccess showWindowTitlebarIcons -bool true
+		set_default com.apple.universalaccess increaseContrast -bool true
 	else
-		warn "skipping reduce motion/transparency: this terminal lacks Full Disk Access"
+		warn "skipping accessibility display settings: this terminal lacks Full Disk Access"
 	fi
 
 	# Mail is sandboxed: its preferences live in ~/Library/Containers, which
